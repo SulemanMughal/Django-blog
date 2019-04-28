@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load embed_video_tags %}
 
+        
 {% block content %}
-
-{% for  blogs in blogs %}  
+<div class="container" style="background:white">
+        <div class="row">
+            <div class="col-md-10">
+                {% for  blogs in blogs %}  
 
 <a  href="{% url 'detail' blogs.slug %}"  style="color:black; "><strong >{{blogs.title}}</strong></a><br> 
 By <a href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>   <br><br><br>
@@ -14,8 +17,10 @@ By <a href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}<
  {% endif %}
  <br><br><br>
 <p>{{blogs.description}}</p>
-{{sex}}
 
-<hr>
+
+<hr style= ' background-color: red; height: 1px; border: 0; '>
 {% endfor %}
+</div></div></div>
+
 {% endblock %}

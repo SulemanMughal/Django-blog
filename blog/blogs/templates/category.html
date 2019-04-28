@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-{% load embed_video_tags %}
-
 {% block content %}
+{% load embed_video_tags %}
 {% for  blogs in blogs %}  
 
 <a  href="{% url 'detail' blogs.slug %}"  style="color:black"><strong >{{blogs.title}}</strong></a><br> 
 By <a href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>   <br><br><br>
-{% if blogs.image %}
- <a href="{% url 'detail' blogs.slug %}"><img src="/media/{{blogs.image}}" style="height:500px;width:500px"><br> </a>{% else %}
-{% video blogs.video '500x500' %}
- {% endif %}
+{% if blogs.image  %}
+ <a href="{% url 'detail' blogs.slug %}"><img src="/media/{{blogs.image}}" style="height:500px;width:500px">{% else %}
+    {% video blogs.video '500x500' %}
+    {% endif %}
+    <br> </a>
  <br><br><br>
 <p>{{blogs.description}}</p>
 

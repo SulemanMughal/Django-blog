@@ -3,7 +3,24 @@
 {% block content %}
 {% load social_share %}
 {% load embed_video_tags %}
+<style>
+.new a{
+    
+        color:blue;
+        font-style: italic;
+    }
+.button{
+    border:solid blue 2px;
+    border-radius: 5px;
+    font-style: italic;
+    margin-left:300px ;
+   
+}
+.button a{
+    color: blue
+}
 
+</style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -22,7 +39,7 @@
 
             <i>Published at: {{blogs.created_at}}</i>
             <br> <br> <br>
-            <div style="border:solid;border-color: red ;padding-bottom: 10px;background: white">
+            <div style='background: white'>
             <table>
                 <tr>
                     <th style="text-align:center">Comments</th>
@@ -30,8 +47,8 @@
 
                 </tr>
             </table>
-        </div><br><br><br>
-            <div style="border:solid;border-color: red ;padding-bottom: 10px;background: white" >
+        </div><br>
+            <div style="border:solid;border-color: red;border-width: 1px ;padding-bottom: 10px;background: white" >
                 <div class="container">
                  <div class="row">                       
                       <div class="col-md-7">
@@ -54,12 +71,14 @@
                                 <button type="submit" class="btn btn-default">Post</button><br>
                               </form></div></div></div></div>
                           <br><br>
-                              <div class="jumbotron">
+                              
                                     <div class="container">    
                     {% for i in comments %}
                     
-                    <h3>{{i.name}} <i style="font-size:10px">says</i> </h3>
-                    {{i.description}} <i>{% post_to_facebook object_or_url " Share on Facebook" %}</i><br><br>
+                    <h3>{{i.name}}  </h3>
+                    {{i.description}}      
+                      <div class="new">
+                        {% post_to_facebook object_or_url  "Share on Facebook" %} </div><br><br>
                     <!-- {% for j in i.comment %}
                     
                        
@@ -71,7 +90,7 @@
                    {% for j in replies %}
                    {% if j.comment.id == i.id %} 
                    <div class="container" style="left:15%;">
-                    <h3>{{j.name}} <i style="font-size:10px">replied</i> </h3>
+                    <h3>{{j.name}}  </h3>
                    </div>
                    <div class="container" style="left:15%;">
                     {{ j.description }}  <br><br>
@@ -81,7 +100,8 @@
                    {% endif %}
                    
                    {% endfor %}
-                   <a style="margin-left:500px;margin-bottom: 100px" href="#" data-toggle="modal" data-target="#exampleModal" >Reply</a>
+                   <div class=" row"><div class="col-md-3">
+                   <button class="button" style="background-color:white"><a  href="#" data-toggle="modal" data-target="#exampleModal" >Reply</a></button></div></div>
                   <!-- Modal --><br><br>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -125,7 +145,7 @@
                     {% endfor %}
 
                 </div>
-            </div>
+           
 <!-- Button trigger modal -->
 
 
@@ -139,7 +159,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-md-6 col-sm-6 col-xs-6" style="text-align: center">
                             {% post_to_twitter " {{blogs.title}}{{blogs.author.author}}. Check it out!" object_or_url "Twitter" %}
 
 
@@ -147,16 +167,14 @@
 
 
                             
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-
+                     
                             {% send_email object.title "{{blogs.title}}. Check it out!" object_or_url "Gmail" %}
                             {% post_to_linkedin blogs.title object_or_url "LinkedIn" %}
 
 
 
-                        </div>
-                    </div>
+                    
+                </div></div>
 
 
                 </div>
@@ -164,7 +182,7 @@
             <br><br>
             <div class="panel panel-default" style="margin-right:50px">
                 <div class="panel-heading">
-                    <div class=" panel-title">Popular Blogs</div>
+                    <div class=" panel-title"><strong> Popular Blogs </strong></div>
                 </div>
                 <div class="panel-body">
 
@@ -181,7 +199,7 @@
             </div>
             <div class="panel panel-default" style="margin-right:50px">
                 <div class="panel-heading">
-                    <div class=" panel-title">Subscribe Our Blog</div>
+                    <div class=" panel-title"><strong>Subscribe Our Blog</strong></div>
                 </div>
                 <div class="panel-body">
                     <p>Keep in touch, stay tuned with our more blogs. you can subscribe it here</p>
